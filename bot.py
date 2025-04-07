@@ -30,7 +30,7 @@ async def on_message(message):
         return  # don't respond to yourself
     if any(x in message.channel.name for x in ["announcements", "osterpasswords", "dinner-cook"]):
         return
-    if all(letter in message.content.lower() for letter in "meowvindaloo" and random.randint(0, 1) == 0):
+    if all(letter in message.content.lower() for letter in "meowvindaloo") and random.randint(0, 1) == 0:
         await message.channel.send(random.choice(message_bank))
 
 
