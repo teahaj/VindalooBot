@@ -1,11 +1,8 @@
 import discord
 import random
-import asyncio
+import os
 
-# get token from token.txt
-with open("token.txt", "r") as file:
-    TOKEN = file.read().strip()
-
+TOKEN = os.getenv("TOKEN")
 intents = discord.Intents.default()
 intents.messages = True
 intents.guilds = True
@@ -33,8 +30,8 @@ async def on_message(message):
         return  # don't respond to yourself
     if any(x in message.channel.name for x in ["announcements", "osterpasswords", "dinner-cook"]):
         return
-    if all(letter in message.content.lower() for letter in "meow"):
-        await message.channel.send("Your message contained all the letters in 'meow'! Vindaloo says: " + random.choice(message_bank))
+    if all(letter in message.content.lower() for letter in "meowvindaloo" and random.randint(0, 1) == 0):
+        await message.channel.send(random.choice(message_bank))
 
 
 client.run(TOKEN)
